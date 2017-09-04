@@ -1,0 +1,19 @@
+{
+  "name": "fastify-sse",
+  "version": "0.0.1",
+  "description": "Provide Server Sent Event to Fastify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lolo_32",
+  "license": "ISC",
+  "devDependencies": {
+    "fastify": "^0.26.2",
+    "tap": "^10.7.2"
+  },
+  "dependencies": {
+    "fast-safe-stringify": "^1.2.0",
+    "fastify-plugin": "^0.1.0"
+  }
+}
