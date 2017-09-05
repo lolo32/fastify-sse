@@ -14,6 +14,7 @@
     "type": "git",
     "url": "https://github.com/lolo32/fastify-sse.git"
   },
+  "homepage": "https://github.com/lolo32/fastify-sse.git#readme",
   "author": "Lolo_32",
   "license": "ISC",
   "keywords": [
