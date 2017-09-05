@@ -1,5 +1,7 @@
 # fastify-sse
 
+[![Build Status](https://travis-ci.org/lolo32/fastify-sse.svg?branch=master)](https://travis-ci.org/lolo32/fastify-sse)
+
 Easily send Server-Send-Events with Fastify.
 
 This is based on `https://github.com/mtharrison/susie`
