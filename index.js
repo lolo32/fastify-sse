@@ -5,8 +5,11 @@
  */
 
 const FastifyPlugin = require("fastify-plugin");
-const {PassThrough, Readable, Transform} = require("stream");
+const Stream = require("stream");
 const SafeStringify = require("fast-safe-stringify");
+const PassThrough = Stream.PassThrough;
+const Readable = Stream.Readable;
+const Transform = Stream.Transform;
 
 const endl = "\r\n";
 

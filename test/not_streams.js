@@ -3,7 +3,7 @@
 const FastifySse = require("../index");
 
 const Fastify = require("fastify");
-const {test} = require("tap");
+const test = require("tap").test;
 const Request = require("request");
 
 test("reply.sse could send strings", t => {

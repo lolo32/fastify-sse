@@ -3,9 +3,9 @@
 const FastifySse = require("../index");
 
 const Fastify = require("fastify");
-const {test} = require("tap");
+const test = require("tap").test;
 const Request = require("request");
-const {PassThrough} = require("stream");
+const PassThrough = require("stream").PassThrough;
 
 test("reply.sse could send Readable stream in object mode", t => {
   t.plan(7);
