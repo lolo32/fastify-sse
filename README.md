@@ -4,7 +4,7 @@
 
 Easily send Server-Send-Events with Fastify.
 
-This is based on `https://github.com/mtharrison/susie`
+*This is based on `https://github.com/mtharrison/susie`*
 
 ## Install
 
@@ -24,16 +24,16 @@ automatic reconnection.
 
 ```javascript
 // Register the plugin
-fastify.register(require("./index"), (err) => {
+fastify.register(require("fastify-sse"), (err) => {
     if (err) {
       throw err;
     }
 });
 
-// Define a new route
+// Define a new route in hapijs notation
 fastify.route({
   method: "GET",
-  url: "/sse",
+  url: "/sse-hapi",
   handler: (request, reply) => {
     let index;
     const options = {};
@@ -51,6 +51,24 @@ fastify.route({
     }, 1000);
   }
 });
+
+// Define a new route in express notation
+fastify.get("/sse-express",(request, reply) => {
+    let index;
+    const options = {};
+
+    // Send the first data
+    reply.sse("sample data", options);
+    
+    // Send a new data every seconds for 10 seconds then close
+    const interval = setInterval(() => {
+      reply.sse({event: "test", data: index});
+      if (!(index % 10)) {
+        reply.sse();
+        clearInterval(interval);
+      }
+    }, 1000);
+  });
 ```
 
 The `options` are used only for the first call, subsequent ignore it.
