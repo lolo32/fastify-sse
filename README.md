@@ -4,7 +4,7 @@
 
 Easily send Server-Send-Events with Fastify.
 
-*This is based on `https://github.com/mtharrison/susie`*
+_This is based on [github.com/mtharrison/susie](https://github.com/mtharrison/susie)_
 
 ## Install
 
