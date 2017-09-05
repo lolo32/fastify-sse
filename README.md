@@ -90,14 +90,33 @@ You could specify:
 It must be a function that will be called with the event in parameter, and must return a string that will be the
 `id` of the SSE, or it could be `null` if no id is needed.
 
+Using a function:
+
 ```javascript
 reply.sse("message", {
-  idGenerator(event) {
+  idGenerator: (event) => {
     // Retrieve the event name using the key myIdentifiant or use the timestamp if not exists …
     return event.myIdentifiant || (new Date()).getTime();
   }
 });
 ```
+
+It will transmit:
+
+> id: 1504624133267
+>
+> data: message
+
+Do not display `id`, so pass null:
+
+```javascript
+reply.sse("message", {idGenerator: null});
+```
+
+It will transmit:
+
+> data: message
+
 ### event
 
 It could be:
@@ -107,8 +126,8 @@ name doest not change. The event will be retrieved by the browser using `.on("ev
 `.on("message", […])`.
 
 ```javascript
-reply.sse("message", {
-  event(event) {
+reply.sse({myEventName: "myEvent", hello: "world"}, {
+  event: (event) => {
     // Retrieve the event name using the key myEventName …
     const name = event.myEventName;
     // … delete it from the object …
@@ -118,3 +137,11 @@ reply.sse("message", {
   }
 });
 ```
+
+It will transmit:
+
+> id: 1
+>
+> event: MyEvent
+>
+> data: {"hello":"world"}
