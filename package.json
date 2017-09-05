@@ -4,7 +4,8 @@
   "description": "Provide Server-Sent Events to Fastify",
   "main": "index.js",
   "scripts": {
-    "test": "tap test.js --coverage --100"
+    "test": "tap test/*.js --coverage --100",
+    "test:coverage": "tap test/*.js --coverage --100 --coverage-report=html"
   },
   "bugs": {
     "url": "https://github.com/lolo32/fastify-sse/issues"
