@@ -4,7 +4,7 @@
  * Based on https://github.com/mtharrison/susie
  */
 
-const FastifyPlugin = require("fastify-plugin");
+const fastifyPlugin = require("fastify-plugin");
 const Stream = require("stream");
 const SafeStringify = require("fast-safe-stringify");
 const PassThrough = Stream.PassThrough;
@@ -151,7 +151,7 @@ class EventTransform extends Transform {
  * @param {Object} opts
  * @param {function} next
  */
-module.exports = FastifyPlugin((instance, opts, next) => {
+module.exports = fastifyPlugin((instance, opts, next) => {
 
   instance.decorateReply("sse",
       /**

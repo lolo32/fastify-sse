@@ -1,17 +1,16 @@
 "use strict";
 
-const FastifySse = require("../index");
+const fastifySse = require("../index");
 
-const Fastify = require("fastify");
 const test = require("tap").test;
-const Request = require("request");
+const request = require("request");
 const PassThrough = require("stream").PassThrough;
 
-test("reply.sse could send Readable stream in object mode", t => {
+test("reply.sse could send Readable stream in object mode", (t) => {
   t.plan(7);
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -27,7 +26,7 @@ test("reply.sse could send Readable stream in object mode", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {
@@ -44,8 +43,8 @@ test("reply.sse could send Readable stream in object mode", t => {
 test("reply.sse could send Readable stream in byte mode", t => {
   t.plan(7);
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -61,7 +60,7 @@ test("reply.sse could send Readable stream in byte mode", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {
@@ -78,8 +77,8 @@ test("reply.sse could send Readable stream in byte mode", t => {
 test("reply.sse with streams can generate id", t => {
   t.plan(7);
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -95,7 +94,7 @@ test("reply.sse with streams can generate id", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {
@@ -112,8 +111,8 @@ test("reply.sse with streams can generate id", t => {
 test("reply.sse with streams can ignore id", t => {
   t.plan(7);
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -129,7 +128,7 @@ test("reply.sse with streams can ignore id", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {
@@ -146,8 +145,8 @@ test("reply.sse with streams can ignore id", t => {
 test("reply.sse with streams can specify static events", t => {
   t.plan(7);
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -163,7 +162,7 @@ test("reply.sse with streams can specify static events", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {
@@ -180,8 +179,8 @@ test("reply.sse with streams can specify static events", t => {
 test("reply.sse with streams can generate dynamic events", t => {
   t.plan(7);
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -197,7 +196,7 @@ test("reply.sse with streams can generate dynamic events", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {

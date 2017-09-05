@@ -1,18 +1,17 @@
 "use strict";
 
-const FastifySse = require("../index");
+const fastifySse = require("../index");
 
-const Fastify = require("fastify");
 const test = require("tap").test;
-const Request = require("request");
+const request = require("request");
 
-test("reply.sse exists", t => {
+test("reply.sse exists", (t) => {
   t.plan(7);
 
   const data = {hello: "world"};
 
-  const fastify = Fastify();
-  fastify.register(FastifySse, (err) => {
+  const fastify = require("fastify")();
+  fastify.register(fastifySse, (err) => {
     t.error(err);
   });
 
@@ -24,7 +23,7 @@ test("reply.sse exists", t => {
   fastify.listen(0, (err) => {
     t.error(err);
 
-    Request({
+    request({
       method: "GET",
       uri: `http://localhost:${fastify.server.address().port}`
     }, (err, response, body) => {

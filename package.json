@@ -1,6 +1,6 @@
 {
   "name": "fastify-sse",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Provide Server-Sent Events to Fastify",
   "main": "index.js",
   "scripts": {
