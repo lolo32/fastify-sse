@@ -22,7 +22,7 @@ const endl = "\r\n";
 const stringifyEvent = (event) => {
   let ret = "";
 
-  for (const key in event) {
+  for (const key of ["id", "event", "data"]) {
     if (event.hasOwnProperty(key)) {
       let value = event[key];
       if (value instanceof Buffer) {
@@ -66,7 +66,7 @@ const initOptions = (self, options, idGenerator) => {
   if (null !== options.idGenerator) {
     self.idGenerator = options.idGenerator || idGenerator;
   }
-  if ("function" !== typeof self.idGenerator && null !== idGenerator) {
+  if ("function" !== typeof self.idGenerator && null !== options.idGenerator) {
     throw new Error("Option idGenerator must be a function or null");
   }
 
@@ -150,80 +150,79 @@ class EventTransform extends Transform {
  */
 module.exports = FastifyPlugin((instance, opts, next) => {
 
-  /**
-   * Function called when new data should be send
-   *
-   * @param {string|Readable|Object} chunk
-   * @param {Object} options
-   * @param {function} [options.idGenerator]
-   * @param {string|function} [options.event]
-   */
-  const sse = function (chunk, options) {
-    let stream;
+  instance.decorateReply("sse",
+      /**
+       * Function called when new data should be send
+       *
+       * @param {string|Readable|Object} chunk
+       * @param {Object} options
+       * @param {function} [options.idGenerator]
+       * @param {string|function} [options.event]
+       */
+      function (chunk, options) {
+        let stream;
 
-    const send = (stream) => {
-      this.type("text/event-stream")
-          .header("content-encoding", "identity")
-          .send(stream);
-    };
+        const send = (stream) => {
+          this.type("text/event-stream")
+              .header("content-encoding", "identity")
+              .send(stream);
+        };
 
-    const sse = this.res.sse = this.res.sse || {id: 0};
+        const sse = this.res.sse = this.res.sse || {id: 0};
 
-    if (chunk instanceof Readable) {
-      // handle a stream arg
+        if (chunk instanceof Readable) {
+          // handle a stream arg
 
-      sse.mode = "stream";
+          sse.mode = "stream";
 
-      if (chunk._readableState.objectMode) {
-        // Input stream is in object mode, so pipe the input to the passthrough then to the transform
+          if (chunk._readableState.objectMode) {
+            // Input stream is in object mode, so pipe the input to the passthrough then to the transform
 
-        const through = new EventTransform(options, true);
-        stream = new PassThrough();
-        through.pipe(stream);
-        chunk.pipe(through);
-      } else {
-        // Input is not in object mode, so pipe the input to the transform
+            const through = new EventTransform(options, true);
+            stream = new PassThrough();
+            through.pipe(stream);
+            chunk.pipe(through);
+          } else {
+            // Input is not in object mode, so pipe the input to the transform
 
-        stream = new EventTransform(options, false);
-        chunk.pipe(stream);
-      }
+            stream = new EventTransform(options, false);
+            chunk.pipe(stream);
+          }
 
-      send(stream);
-      return;
-    }
+          send(stream);
+          return;
+        }
 
-    // handle a first object arg
+        // handle a first object arg
 
-    if (!sse.stream) {
-      options = options || {};
-      const idGenerator = () => sse.id += 1;
+        if (!sse.stream) {
+          options = options || {};
+          const idGenerator = () => sse.id += 1;
 
-      stream = new PassThrough();
-      sse.stream = stream;
-      sse.mode = "object";
+          stream = new PassThrough();
+          sse.stream = stream;
+          sse.mode = "object";
 
-      initOptions(sse, options, idGenerator);
+          initOptions(sse, options, idGenerator);
 
-      send(stream);
-    } else {
-      // already have an object stream flowing, just write next event
-      stream = sse.stream;
-    }
+          send(stream);
+        } else {
+          // already have an object stream flowing, just write next event
+          stream = sse.stream;
+        }
 
-    const event = {};
-    if (sse.idGenerator) {
-      event.id = sse.idGenerator(chunk);
-    }
+        const event = {};
+        if (sse.idGenerator) {
+          event.id = sse.idGenerator(chunk);
+        }
 
-    if (sse.event) {
-      event.event = sse.eventGenerator ? sse.event(chunk) : sse.event;
-    }
-    event.data = chunk;
+        if (sse.event) {
+          event.event = sse.eventGenerator ? sse.event(chunk) : sse.event;
+        }
+        event.data = chunk;
 
-    writeEvent(event, stream);
-  };
-
-  instance.decorateReply("sse", sse);
+        writeEvent(event, stream);
+      });
 
   next();
 }, "0.x");

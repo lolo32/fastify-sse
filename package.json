@@ -1,15 +1,28 @@
 {
   "name": "fastify-sse",
-  "version": "0.0.1",
-  "description": "Provide Server Sent Event to Fastify",
+  "version": "0.1.0",
+  "description": "Provide Server-Sent Events to Fastify",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap test.js --coverage --100"
+  },
+  "bugs": {
+    "url": "https://github.com/lolo32/fastify-sse/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lolo32/fastify-sse.git"
   },
   "author": "Lolo_32",
   "license": "ISC",
+  "keywords": [
+    "Fastify",
+    "server-sent events",
+    "sse"
+  ],
   "devDependencies": {
     "fastify": "^0.26.2",
+    "request": "^2.81.0",
     "tap": "^10.7.2"
   },
   "dependencies": {
