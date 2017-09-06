@@ -1,3 +1,5 @@
+"use strict";
+
 const fastify = require("fastify")();
 const PassThrough = require("stream").PassThrough;
 const Fs = require("fs");
@@ -12,15 +14,12 @@ fastify.get("/sse", (request, reply) => {
   reply.sse("toto");
 
   setTimeout(() => {
-    reply.sse({event: "test", data: "titi au ski"});
+    reply.sse({data: "titi au ski", event: "test"});
     reply.sse();
-  });
+  }, 500);
 });
 
-fastify.route({
-  method: "GET",
-  url: "/sse2",
-  handler: (request, reply) => {
+fastify.get("/sse2", (request, reply) => {
     const read = new PassThrough({objectMode: true});
     let index = 0;
 
@@ -36,22 +35,21 @@ fastify.route({
         clearInterval(id);
       }
     }, 1000);
-  }
-});
+  });
 
 fastify.route({
-  method: "GET",
-  url: "/sse3",
   handler: (request, reply) => {
     reply.sse(Fs.createReadStream("./package.json"));
-  }
+  },
+  method: "GET",
+  url: "/sse3"
 });
 
-fastify.get("/", function (request, reply) {
+fastify.get("/", (request, reply) => {
   reply.send({hello: "world"});
 });
 
-fastify.listen(3000, function (err) {
+fastify.listen(3000, (err) => {
   if (err) {
     throw err;
   }
