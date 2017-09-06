@@ -1,6 +1,8 @@
 # fastify-sse
 
 [![Build Status](https://travis-ci.org/lolo32/fastify-sse.svg?branch=master)](https://travis-ci.org/lolo32/fastify-sse)
+[![Coverage Status](https://coveralls.io/repos/github/lolo32/fastify-sse/badge.svg)](https://coveralls.io/github/lolo32/fastify-sse)
+[![Known Vulnerabilities](https://snyk.io/test/github/lolo32/fastify-sse/badge.svg)](https://snyk.io/test/github/lolo32/fastify-sse)
 
 Easily send Server-Send-Events with Fastify.
 

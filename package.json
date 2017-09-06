@@ -23,6 +23,7 @@
     "sse"
   ],
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "fastify": "^0.26.2",
     "request": "^2.81.0",
     "tap": "^10.7.2"
