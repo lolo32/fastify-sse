@@ -12,6 +12,7 @@ const Readable = Stream.Readable;
 const Transform = Stream.Transform;
 
 const endl = "\r\n";
+const sseParams = Symbol("sse");
 
 /**
  * Convert an object
@@ -171,7 +172,7 @@ module.exports = fastifyPlugin((instance, opts, next) => {
           .send(stream);
       };
 
-      const sse = this.res.sse = this.res.sse || {id: 0};
+      const sse = this[sseParams] = this[sseParams] || {id: 0};
 
       if (chunk instanceof Readable) {
         // handle a stream arg
