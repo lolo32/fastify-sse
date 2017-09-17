@@ -207,7 +207,7 @@ test("reply.sse does not want id", (t) => {
 });
 
 test("reply.sse throw an error if idGenerator is not valid", (t) => {
-  t.plan(5);
+  t.plan(4);
 
   const fastify = fastifyModule();
   fastify.register(fastifySse, (err) => {
@@ -217,12 +217,7 @@ test("reply.sse throw an error if idGenerator is not valid", (t) => {
   const data = {hello: "world"};
 
   fastify.get("/", (request, reply) => {
-    try {
-      reply.sse(data, {idGenerator: true});
-    } catch (err) {
-      t.ok(err instanceof Error);
-      t.equal(err.message, "Option idGenerator must be a function or null");
-    }
+    t.throws(() => reply.sse(data, {idGenerator: true}), new Error("Option idGenerator must be a function or null"));
     reply.send();
   });
 
