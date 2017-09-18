@@ -1,6 +1,6 @@
 {
   "name": "fastify-sse",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Provide Server-Sent Events to Fastify",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/lolo32/fastify-sse.git#readme",
   "author": "Lolo_32",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "Fastify",
     "server-sent events",
