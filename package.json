@@ -23,9 +23,9 @@
     "sse"
   ],
   "devDependencies": {
-    "fastify": "^0.26.2",
+    "fastify": "^0.38.0",
     "request": "^2.81.0",
-    "tap": "^10.7.2"
+    "tap": "^12.0.2"
   },
   "dependencies": {
     "fast-safe-stringify": "^1.2.0",
