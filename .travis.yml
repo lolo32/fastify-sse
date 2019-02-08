@@ -14,8 +14,9 @@ before_install:
 - npm install -q
 before_script:
 - npm prune
+script:
+- echo "Gogogo"
 after_success:
-- npm run coverage
 - npm run semantic-release
 branches:
   except:
