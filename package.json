@@ -1,20 +1,21 @@
 {
-  "name": "fastify-sse",
-  "version": "0.1.5",
+  "name": "@trade-platform/fastify-sse-plugin",
+  "version": "0.0.0-development",
   "description": "Provide Server-Sent Events to Fastify",
   "main": "index.js",
   "scripts": {
     "test": "tap test/*.js --coverage --100",
-    "test:coverage": "tap test/*.js --coverage --100 --coverage-report=html"
+    "test:coverage": "tap test/*.js --coverage --100 --coverage-report=html",
+    "semantic-release": "semantic-release"
   },
   "bugs": {
-    "url": "https://github.com/lolo32/fastify-sse/issues"
+    "url": "https://github.com/trade-platform/fastify-sse-plugin/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lolo32/fastify-sse.git"
+    "url": "https://github.com/trade-platform/fastify-sse-plugin.git"
   },
-  "homepage": "https://github.com/lolo32/fastify-sse.git#readme",
+  "homepage": "https://github.com/trade-platform/fastify-sse-plugin.git#readme",
   "author": "Lolo_32",
   "license": "MIT",
   "keywords": [
@@ -25,10 +26,14 @@
   "devDependencies": {
     "fastify": "^0.26.2",
     "request": "^2.81.0",
-    "tap": "^10.7.2"
+    "tap": "^10.7.2",
+    "semantic-release": "^15.13.3"
   },
   "dependencies": {
     "fast-safe-stringify": "^1.2.0",
     "fastify-plugin": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
