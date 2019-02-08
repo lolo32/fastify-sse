@@ -8,9 +8,6 @@ node_js:
 env:
   global:
   - NODE_ENV=test
-cache:
-  directories:
-  - node_modules
 before_install:
 - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 - npm set progress=false
