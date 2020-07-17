@@ -23,7 +23,7 @@
     "sse"
   ],
   "devDependencies": {
-    "fastify": "^0.26.2",
+    "fastify": "^0.39.0",
     "request": "^2.81.0",
     "tap": "^10.7.2"
   },
