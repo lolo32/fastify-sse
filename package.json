@@ -7,6 +7,7 @@
     "test": "tap test/*.js --coverage --100",
     "test:coverage": "tap test/*.js --coverage --100 --coverage-report=html"
   },
+  "types": "index.d.ts",
   "bugs": {
     "url": "https://github.com/lolo32/fastify-sse/issues"
   },
@@ -23,12 +24,12 @@
     "sse"
   ],
   "devDependencies": {
-    "fastify": "^0.26.2",
+    "fastify": "^3.9.2",
     "request": "^2.81.0",
     "tap": "^10.7.2"
   },
   "dependencies": {
     "fast-safe-stringify": "^1.2.0",
-    "fastify-plugin": "^0.1.0"
+    "fastify-plugin": "^3.0.0"
   }
 }
