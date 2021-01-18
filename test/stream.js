@@ -10,12 +10,10 @@ const request = require("request");
 const PassThrough = require("stream").PassThrough;
 
 test("reply.sse could send Readable stream in object mode", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = {hello: "world"};
 
@@ -45,12 +43,10 @@ test("reply.sse could send Readable stream in object mode", (t) => {
 });
 
 test("reply.sse could send Readable stream in byte mode", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = "hello: world";
 
@@ -80,12 +76,10 @@ test("reply.sse could send Readable stream in byte mode", (t) => {
 });
 
 test("reply.sse with streams can generate id", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = {hello: "world", num: 4};
 
@@ -115,12 +109,10 @@ test("reply.sse with streams can generate id", (t) => {
 });
 
 test("reply.sse with streams can ignore id", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = {hello: "world", num: 4};
 
@@ -150,12 +142,10 @@ test("reply.sse with streams can ignore id", (t) => {
 });
 
 test("reply.sse with streams can specify static events", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = {hello: "world", num: 4};
 
@@ -185,12 +175,10 @@ test("reply.sse with streams can specify static events", (t) => {
 });
 
 test("reply.sse with streams can generate dynamic events", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = {hello: "world", name: "test function"};
 

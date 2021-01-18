@@ -9,14 +9,12 @@ const test = require("tap").test;
 const request = require("request");
 
 test("reply.sse exists", (t) => {
-  t.plan(7);
+  t.plan(6);
 
   const data = {hello: "world"};
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   fastify.get("/", (request, reply) => {
     t.ok(reply.sse);

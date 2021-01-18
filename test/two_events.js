@@ -10,12 +10,10 @@ const request = require("request");
 const test = require("tap").test;
 
 test("reply.sse reply to 2 SSE simultaneously", (t) => {
-  t.plan(12);
+  t.plan(11);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
-    t.error(err);
-  });
+  fastify.register(fastifySse, {});
 
   const data = "hello: world";
 
