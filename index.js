@@ -229,4 +229,7 @@ module.exports = fastifyPlugin((instance, opts, next) => {
     });
 
   next();
-}, ">=0.x");
+}, {
+  fastify: "3.x",
+  name: "sse"
+});
