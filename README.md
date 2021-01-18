@@ -37,18 +37,27 @@ fastify.route({
   method: "GET",
   url: "/sse-hapi",
   handler: (request, reply) => {
-    let index;
+    let index = 0;
     const options = {};
+
+    const cleanUp = () => {
+      fastify.log.info('cleaning up interval after disconnect')
+      clearInterval(interval)
+    }
 
     // Send the first data
     reply.sse("sample data", options);
-    
+
+    // Handle client disconnect event
+    request.socket.on('close', cleanUp)
+
     // Send a new data every seconds for 10 seconds then close
     const interval = setInterval(() => {
+      index += 1
       reply.sse({event: "test", data: index});
       if (!(index % 10)) {
+        // Close the socket
         reply.sse();
-        clearInterval(interval);
       }
     }, 1000);
   }
@@ -61,7 +70,7 @@ fastify.get("/sse-express",(request, reply) => {
 
     // Send the first data
     reply.sse("sample data", options);
-    
+
     // Send a new data every seconds for 10 seconds then close
     const interval = setInterval(() => {
       reply.sse({event: "test", data: index});
