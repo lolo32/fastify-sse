@@ -13,7 +13,7 @@ test("reply.sse reply to 2 SSE simultaneously", (t) => {
   t.plan(12);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 

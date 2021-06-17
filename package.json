@@ -1,6 +1,6 @@
 {
   "name": "fastify-sse",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "Provide Server-Sent Events to Fastify",
   "main": "index.js",
   "scripts": {
@@ -23,12 +23,12 @@
     "sse"
   ],
   "devDependencies": {
-    "fastify": "^0.26.2",
+    "fastify": "^2",
     "request": "^2.81.0",
     "tap": "^10.7.2"
   },
   "dependencies": {
     "fast-safe-stringify": "^1.2.0",
-    "fastify-plugin": "^0.1.0"
+    "fastify-plugin": "^1"
   }
 }

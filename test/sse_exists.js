@@ -14,7 +14,7 @@ test("reply.sse exists", (t) => {
   const data = {hello: "world"};
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 

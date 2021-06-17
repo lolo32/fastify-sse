@@ -4,11 +4,14 @@ const fastify = require("fastify")();
 const PassThrough = require("stream").PassThrough;
 const Fs = require("fs");
 
-fastify.register(require("./index"), (err) => {
-  if (err) {
-    throw err;
+fastify
+  .register(require("./index"))
+  .after( (err) => {
+    if (err) {
+      throw err;
+    }
   }
-});
+);
 
 fastify.get("/sse", (request, reply) => {
   reply.sse("toto");

@@ -13,7 +13,7 @@ test("reply.sse could send Readable stream in object mode", (t) => {
   t.plan(7);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 
@@ -48,7 +48,7 @@ test("reply.sse could send Readable stream in byte mode", (t) => {
   t.plan(7);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 
@@ -83,7 +83,7 @@ test("reply.sse with streams can generate id", (t) => {
   t.plan(7);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 
@@ -118,7 +118,7 @@ test("reply.sse with streams can ignore id", (t) => {
   t.plan(7);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 
@@ -153,7 +153,7 @@ test("reply.sse with streams can specify static events", (t) => {
   t.plan(7);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 
@@ -188,7 +188,7 @@ test("reply.sse with streams can generate dynamic events", (t) => {
   t.plan(7);
 
   const fastify = fastifyModule();
-  fastify.register(fastifySse, (err) => {
+  fastify.register(fastifySse).after( (err) => {
     t.error(err);
   });
 
