@@ -220,8 +220,8 @@ module.exports = fastifyPlugin((instance, opts, next) => {
         event.id = sse.idGenerator(chunk);
       }
 
-      if (sse.event) {
-        event.event = sse.eventGenerator ? sse.event(chunk) : sse.event;
+      if (options.event || sse.event) {
+        event.event = options.event || (sse.eventGenerator ? sse.event(chunk) : sse.event);
       }
       event.data = chunk;
 
@@ -229,4 +229,4 @@ module.exports = fastifyPlugin((instance, opts, next) => {
     });
 
   next();
-}, ">=0.x");
+});
